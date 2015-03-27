@@ -1,0 +1,27 @@
+class Solution:
+    # @return a tuple, (index1, index2)
+    def twoSum(self, num, target):
+        new_num = num[:]
+        new_num.sort()
+        first = 0
+        last = len(new_num)-1
+        
+        x = first
+        y = last
+        
+        while first<last:
+            if new_num[first]+new_num[last]==target:
+                while new_num[first]!=num[x]:
+                    x += 1 
+                while new_num[last]!=num[y]:
+                    y -= 1
+                if x<y:
+                    return (x+1, y+1)
+                else:
+                    return (y+1, x+1)
+            elif new_num[first]+new_num[last]>target:
+                last = last-1
+            else:
+                first = first+1
+        if first>=last:
+            print "no results"
